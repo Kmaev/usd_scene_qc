@@ -1,8 +1,10 @@
- USD Primvar QC
+ USD Stage QC
 
-This repo is an early prototype of a QC tool for USD scenes. It's part of a bigger set of utilities I’m building to catch sneaky issues that can break things during rendering.
+This repo is an early prototype of a QC tool for USD scenes. It's part of a broader set of utilities I’m building to catch sneaky issues that can break things during rendering.
 
-The Problem
+Primvars Check — our starting point and one of the core checks this tool performs
+
+The Problem:
 
 Let’s say you have a primvar (like Cd or st) on your geometry. — in our case, it’s called 'foo'.
 
