@@ -1,5 +1,7 @@
 import os
-from pxr import Usd, UsdGeom
+
+from pxr import Usd, UsdGeom, Sdf
+
 
 def get_prim_geo_data_timedep(prim: Usd.Prim, timecode):
     """
@@ -12,12 +14,12 @@ def get_prim_geo_data_timedep(prim: Usd.Prim, timecode):
 
     pb = UsdGeom.PointBased(prim)
     pts_attr = pb.GetPointsAttr()
-    #Check points based interpolation
+    # Check points based interpolation
     if pts_attr and pts_attr.IsDefined():
         pts = pts_attr.Get(timecode)
         point_count = len(pts) if pts else 0
 
-    #Check mesh interpolation
+    # Check mesh interpolation
     mesh = UsdGeom.Mesh(prim)
     if mesh:
         face_counts = mesh.GetFaceVertexCountsAttr().Get(timecode)
@@ -52,10 +54,10 @@ def create_interpolation_map(point_count, face_count, vertex_count):
     Creates a mapping of interpolation type to expected value count.
     """
     interp_map = {
-        "vertex": point_count, #points
-        "faceVarying": vertex_count, #vertex
-        "uniform": face_count, #prims
-        "constant": 1 #detail
+        "vertex": point_count,  # points
+        "faceVarying": vertex_count,  # vertex
+        "uniform": face_count,  # prims
+        "constant": 1  # detail
     }
     return interp_map
 
@@ -101,17 +103,38 @@ def qc_attributs(prim: Usd.Prim, attr):
         return None
 
 
+def get_missing_references(usd_layer):
+    """
+    Check missing refrences on usd layer.
+    """
+    external_refs = usd_layer.GetExternalReferences()
+    missing_refs = []
+    for path in external_refs:
+        # print("Ext reference:", path)
+        abs_path = layer.ComputeAbsolutePath(path)
+        if not os.path.exists(abs_path):
+            # print(f"============================ \nMissing file: {abs_path}")
+            missing_refs.append(abs_path)
+    return missing_refs
+
+
 if __name__ == "__main__":
-# ----- Script entry point -----
+    # ----- Script entry point -----
     script_dir = os.path.dirname(__file__)
     resources_path = os.path.join(script_dir, "..", "..", "resources")
     resources_path = os.path.normpath(resources_path)
-    stage_path = os.path.join(resources_path, "primvars_check_v004.usda")
+    stage_path = os.path.join(resources_path, "primvars_check_v007.usda")
     stage = Usd.Stage.Open(stage_path)
 
+    # Check broken attributes
     start_prim = stage.GetPseudoRoot()
     iterator = iter(Usd.PrimRange(start_prim))
     for prim in iterator:
         if not iterator.IsPostVisit() and prim.IsA(UsdGeom.Mesh):
             for attr in prim.GetAttributes():
                 print(qc_attributs(prim, attr))
+                pass
+
+    # Check missing references
+    layer = Sdf.Layer.FindOrOpen(stage_path)
+    print(get_missing_references(layer))
