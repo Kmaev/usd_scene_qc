@@ -4,9 +4,9 @@ from importlib import reload
 import hou
 from PySide2 import QtWidgets, QtCore, QtGui
 
-from usd_scene_qc import _usd
+from usd_scene_qc import _hou_usd
 
-reload(_usd)
+reload(_hou_usd)
 
 """
 USDSceneQC is a QDialog widget for performing quality checks on a USD scene.
@@ -22,7 +22,7 @@ It scans the scene for:
 class USDSceneQC(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(USDSceneQC, self).__init__(parent=parent)
-        self.selected_node = _usd.get_hou_selected_node()
+        self.selected_node = _hou_usd.get_hou_selected_node()
         self.stage = self.selected_node.stage()
 
         self.resize(1050, 800)
@@ -103,7 +103,7 @@ class USDSceneQC(QtWidgets.QDialog):
             item = QtWidgets.QListWidgetItem("No errors detected — QC successful.")
             self.qc_report_list.addItem(item)
 
-    def get_errors(self) -> list[_usd.ValidationError]:
+    def get_errors(self) -> list[_hou_usd.ValidationError]:
         """
         Executes all currently enabled QC validators and returns a list of detected errors.
 
@@ -115,15 +115,15 @@ class USDSceneQC(QtWidgets.QDialog):
         :return: List of ValidationError
 
         """
-        errors: list[_usd.ValidationError] = []
+        errors: list[_hou_usd.ValidationError] = []
         if self.references_check.isChecked():
-            errors += _usd.get_missing_references(self.stage)
+            errors += _hou_usd.get_missing_references(self.stage)
         if self.mat_binding_check.isChecked():
-            errors += _usd.validate_material_binding(self.stage)
+            errors += _hou_usd.validate_material_binding(self.stage)
         if self.render_settings_check.isChecked():
-            errors += _usd.validate_render_primitives(self.stage)
+            errors += _hou_usd.validate_render_primitives(self.stage)
         if self.attribs_check.isChecked():
-            errors += _usd.validate_attributes(self.stage)
+            errors += _hou_usd.validate_attributes(self.stage)
 
         return errors
 
