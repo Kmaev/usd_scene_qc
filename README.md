@@ -4,6 +4,10 @@ This repo contains an early prototype of a QC tool for USD scenes, designed to h
 
 It’s part of a broader suite of **Houdini + USD utilities** I’m building to catch subtle scene issues.
 
+## Presentation Demo:
+
+https://vimeo.com/1093300593
+
 ## Currently Supports
 
 - Missing reference validation  
