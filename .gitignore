@@ -27,7 +27,7 @@ ENV/
 Thumbs.db
 
 # IDE files
-.idea/
+../.idea/
 .vscode/
 
 # Logs and runtime files
