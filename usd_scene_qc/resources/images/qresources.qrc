@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="icons">
+        <file alias="angle-down">icons/angle-down.png</file>
+        <file alias="crop-square">icons/crop-square.png</file>
+        <file alias="square">icons/square.png</file>
+        <file alias="check-square">icons/check-square.png</file>
+    </qresource>
+</RCC>

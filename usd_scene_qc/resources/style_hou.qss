@@ -1,0 +1,180 @@
+* {
+    /*font-family: "Calibri Regular";*/
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+}
+QGroupBox {
+    border: none;
+    border-top: 0px solid #262626;
+    border-radius: 0px;
+}
+QListWidget {
+    background-color: #262626;
+    border: none;
+    border-radius: 1px;
+}
+QListWidget::item::hover {
+    background-color: #532c63;
+}
+QListWidget::item:selected {
+    background-color: #492657;
+}
+
+QComboBox {
+    background-color: #3b3b3b;
+    border: 1px solid #262626;
+
+}
+QComboBox::drop-down  {
+    background-color: #3b3b3b;
+    border: 0px solid #262626;
+    border-left-width: 1px;
+    border-left-color: #262626;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+QComboBox QAbstractItemView {
+    border: 1px solid #262626;
+    selection-background-color: #262626;
+    selection-color: white;
+}
+QSplitter {
+    width: 5px;
+    border: 0px solid #262626;
+    border-radius: 1px;
+    margin: 1px;
+}
+QSplitter::handle {
+    background-color: #262626;
+}
+QSplitter::handle:hover {
+    background-color: #a0a0a0;
+}
+QLineEdit, QSpinBox {
+    border: none;
+    border-radius: 3px;
+}
+QTextEdit{
+    border: none;
+    border-radius: 0px;
+    background-color: #262626;
+    margin: 0px;
+}
+QAbstractItemView#completer {
+    background-color: #434343;
+    background-color: #4b4b4b;
+    selection-background-color: #262626;
+    color: white;
+    font-family: "Calibri Regular";
+    font: 13px;
+    border: 1px solid #262626;
+    outline: 0;
+}
+QCheckBox {
+    width: 10px;
+    height: 10px;
+    border-radius: 0px;
+    border: none;
+}
+
+QPushButton {
+    border-radius: 3px;
+    border: 1px solid #262626;
+}
+QPushButton:hover {
+    background-color: #532c63;
+}
+
+QScrollArea {
+    border: none;
+}
+
+QSlider::groove:horizontal {
+    /*border: 1px solid #262626;*/
+    border: none;
+    border-radius: 3px;
+    height: 4px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #666666, stop:1 #828282);
+    margin: 2px;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #a0a0a0, stop:1 #8f8f8f);
+    border: none;
+    width: 22px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove*/
+    border-radius: 3px;
+}
+QSlider::sub-page:horizontal {
+    border: none;
+    height: 6px;
+    border-radius: 3px;
+    margin: 2px;
+}
+QScrollBar::vertical {
+    background: #262626;
+    padding: 1px;
+    margin: 0px;
+    border: none;
+    width: 10px;
+}
+
+QScrollBar::horizontal {
+    background: #262626;
+    padding: 1px;
+    margin: 0px;
+    border:none;
+    height: 10px;
+}
+QScrollBar::handle:vertical,
+QScrollBar::handle:horizontal {
+    background-color: #565656;
+    border-radius: 4px;
+    border: none;
+}
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    height: 10px;
+}
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+QTreeView {
+    background-color: #262626;
+    border-radius: 0px;
+    border: 0px;
+    margin: 0px;
+}
+QTreeWidget::header {
+    background-color: #3a3a3a;
+    border: 0px;
+}
+
+QHeaderView::section {
+    background-color: #3a3a3a;
+    border: 0px;
+    padding: 4px;
+}
+
+QTreeView::item {
+    border: 0px;
+}
+QTreeView::item:selected {
+    background-color: #492657;
+
+}
+QTreeView::item::hover {
+    background-color: #532c63;
+}
+
+
+
+
