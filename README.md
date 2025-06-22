@@ -1,6 +1,25 @@
- USD Stage QC
+# USD Scene QC
 
-This repo is an early prototype of a QC tool for USD scenes. It's part of a broader set of utilities I’m building to catch sneaky issues that can break things during rendering.
+This repo contains an early prototype of a QC tool for USD scenes, designed to help identify common issues before they cause problems at render time.
+
+It’s part of a broader suite of **Houdini + USD utilities** I’m building to catch subtle scene issues.
+
+## Currently Supports
+
+- Missing reference validation  
+- Attribute interpolation inconsistencies across time samples  
+- Invalid or missing render settings  
+- Unbound or missing cameras  
+- Broken or inactive material bindings  
+
+---
+
+Ideal for **TDs and developers** working in **VFX or animation pipelines** who want lightweight, scriptable validation before handoff.
+
+
+<img width="1047" alt="image" src="https://github.com/user-attachments/assets/41c12122-8a08-4648-bc37-55fcbfdb3e6d" />
+
+
 
 Primvars Check — our starting point and one of the core checks this tool performs
 
@@ -24,8 +43,6 @@ When you bring that geometry back into LOPs, that primvar might still be there �
 
 A vertex-interpolated primvar with 100 values… but your fractured geo has 500 vertices now.
 A faceVarying primvar with stale data from before the fracture.
-Mismatch like this can silently break things at render time — or worse, crash it altogether.
+Mismatch like this can silently break things at render time — or crash it altogether.
 
-What this tool does
 
-This little checker helps catch those mismatches by comparing the interpolation type of each primvar to the actual element count on the geometry (points, faces, vertices) — and lets you know if something’s off.
